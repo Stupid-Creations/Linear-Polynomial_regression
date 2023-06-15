@@ -1,5 +1,4 @@
 from Matrix import *
-
 class LinearRegression:
     def __init__(self,X,Y):
         self.fit(X,Y)
@@ -10,8 +9,9 @@ class LinearRegression:
         return x
     def predict(self,X):
         return m_v(dot(self.change_input(v_m(X)),self.params))
-    def gradient(self,X,Y):
-        x,y = self.change_input(v_m(X)),v_m(Y)
+    def gradient(self,X,Y,oneindependent=True):
+        if oneindependent:
+            x,y = self.change_input(v_m(X)),v_m(Y)
         return dot(getMatrixInverse(dot(transpose(x),x)),dot(transpose(x),y))
     def fit(self,X,Y):
         self.params = self.gradient(X,Y)
