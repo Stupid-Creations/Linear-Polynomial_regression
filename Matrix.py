@@ -9,7 +9,7 @@ def s_mult(X,scalar):
 def adds(X,scalar):
     return [[x+scalar for x in j] for j in X]
 
-def sum(X):
+def sum_m(X):
     ans = 0
     for i in X:
         for j in i:
