@@ -1,18 +1,24 @@
 from matplotlib import pyplot as plt
 from Linear_Regression import *
 
-#test dataset of celsius to kelvin
-x = [i for i in range(50)]
-y = [a+273 for a in x]
+# prep data
+x = [i for i in range(1,100)]
+y = [random.randint(0,1000) for i in x]
+z = [x+y for x,y in zip(x,y)]
+data = [[a] for a,b in zip(x,y)]
 
-testx = [i for i in range(51,100)]
-testy = [i+273 for i in testx]
+for i in data:
+    i.append(y[data.index(i)])
 
-model = LinearRegression(v_m(x),v_m(y))
-yn = model.predict(v_m(testx))
+#make a model
+model = LinearRegression(data,v_m(z))
+yn = model.predict(data)
 
 print("Parameters: ",model.params,"There is small deviation in the intercept due to rounding errors")
 
-plt.scatter(testx,testy)
-plt.plot(testx,yn,color='black')
+#plot fancy graph (I like looking at graphs that say good things)
+a = plt.axes(projection = "3d")
+a.plot3D(x,y,yn,c="yellow")
+a.scatter3D(x,y,z,c=z,cmap = "winter")
+
 plt.show()
