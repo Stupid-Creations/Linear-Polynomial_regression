@@ -15,7 +15,7 @@ model = LinearRegression(data,v_m(z))
 yn = model.predict(data)
 
 print("Parameters: ",model.params,"There is small deviation in the intercept due to rounding errors")
-
+# The error of the model is 1.0860845704075564e-26
 #plot fancy graph (I like looking at graphs that say good things)
 a = plt.axes(projection = "3d")
 a.plot3D(x,y,yn,c="yellow")
