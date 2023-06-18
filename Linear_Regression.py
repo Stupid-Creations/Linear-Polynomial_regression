@@ -1,5 +1,5 @@
 from Matrix import *
-#NOTE: YOU NEED TO USE v_m(data) IF YOU ARE USING DATA IN FORM OF 1D ARRAY
+#NOTE: PLEASE USE v_m(data) IF ANY OF YOUR DATA IS A 1D ARRAY
 class LinearRegression:
     def __init__(self,X,Y):
         self.fit(X,Y)
@@ -12,7 +12,10 @@ class LinearRegression:
         return m_v(dot(self.change_input(X),self.params))
     def gradient(self,X,Y):
         x = self.change_input(X)
-        return dot(getMatrixInverse(dot(transpose(x),x)),dot(transpose(x),Y))
+        try:
+            return dot(getMatrixInverse(dot(transpose(x),x)),dot(transpose(x),Y))
+        except:
+            raise ValueError("Input values dependent")
     def fit(self,X,Y):
         self.params = self.gradient(X,Y)
         print("The error of the model is: ",self.cost(X,Y))
